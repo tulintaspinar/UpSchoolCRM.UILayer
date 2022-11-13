@@ -1,0 +1,19 @@
+﻿@model EmployeeTask
+@{
+    ViewData["Title"] = "AddEmployeeTask";
+    Layout = "~/Views/Shared/_CrmLayout.cshtml";
+}
+
+<h1>YENİ GÖREV GİRİŞİ</h1>
+<form method="post" >
+    <Label>Personel</Label>
+    @Html.DropDownListFor(x=>x.AppUserID,(List<SelectListItem>)ViewBag.v,new{@class="form-control"})
+    <br />
+    <Label>Görev Başlığı</Label>
+    <input type="text" class="form-control" asp-for="Title" />
+    <br />
+    <Label>Görev Açıklaması</Label>
+    <textarea cols="2" rows="5" class="form-control" asp-for="Details" />
+    <br />
+    <button class="btn btn-outline-info">GÖREVİ TANIMLA</button>
+</form>
