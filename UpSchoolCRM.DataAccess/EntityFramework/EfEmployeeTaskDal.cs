@@ -20,5 +20,13 @@ namespace UpSchoolCRM.DataAccess.EntityFramework
                 return context.EmployeeTasks.Include(x => x.AppUser).ToList();
             }
         }
+
+        public List<EmployeeTask> GetEmployeeTaskById(int id)
+        {
+            using(var context = new Context())
+            {
+                return context.EmployeeTasks.Where(x => x.AppUserID == id).ToList();
+            }
+        }
     }
 }

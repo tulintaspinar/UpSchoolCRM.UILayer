@@ -11,5 +11,6 @@ namespace UpSchoolCRM.DataAccess.Abstract
     public interface IEmployeeTaskDal : IGenericDal<EmployeeTask>
     {
         List<EmployeeTask> GetEmployeeTaskByEmployee();
+        List<EmployeeTask> GetEmployeeTaskById(int id);
     }
 }

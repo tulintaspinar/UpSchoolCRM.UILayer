@@ -331,6 +331,62 @@ namespace UpSchoolCRM.DataAccess.Migrations
                     b.ToTable("EmployeeTasks");
                 });
 
+            modelBuilder.Entity("UpSchoolCRM.EntityLayer.Concrete.EmployeeTaskDetail", b =>
+                {
+                    b.Property<int>("EmployeeTaskDetailID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeTaskID")
+                        .HasColumnType("int");
+
+                    b.HasKey("EmployeeTaskDetailID");
+
+                    b.HasIndex("EmployeeTaskID");
+
+                    b.ToTable("EmployeeTaskDetails");
+                });
+
+            modelBuilder.Entity("UpSchoolCRM.EntityLayer.Concrete.Message", b =>
+                {
+                    b.Property<int>("MessageID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MessageContent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MessageSubject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReceiverName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MessageID");
+
+                    b.ToTable("Messages");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("UpSchoolCRM.EntityLayer.Concrete.AppRole", null)
@@ -404,6 +460,17 @@ namespace UpSchoolCRM.DataAccess.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("UpSchoolCRM.EntityLayer.Concrete.EmployeeTaskDetail", b =>
+                {
+                    b.HasOne("UpSchoolCRM.EntityLayer.Concrete.EmployeeTask", "EmployeeTask")
+                        .WithMany("EmployeeTaskDetails")
+                        .HasForeignKey("EmployeeTaskID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EmployeeTask");
+                });
+
             modelBuilder.Entity("UpSchoolCRM.EntityLayer.Concrete.AppUser", b =>
                 {
                     b.Navigation("EmployeeTasks");
@@ -412,6 +479,11 @@ namespace UpSchoolCRM.DataAccess.Migrations
             modelBuilder.Entity("UpSchoolCRM.EntityLayer.Concrete.Category", b =>
                 {
                     b.Navigation("Employees");
+                });
+
+            modelBuilder.Entity("UpSchoolCRM.EntityLayer.Concrete.EmployeeTask", b =>
+                {
+                    b.Navigation("EmployeeTaskDetails");
                 });
 #pragma warning restore 612, 618
         }

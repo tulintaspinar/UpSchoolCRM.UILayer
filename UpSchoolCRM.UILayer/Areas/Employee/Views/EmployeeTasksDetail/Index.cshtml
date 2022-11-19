@@ -1,0 +1,18 @@
+﻿@model List<EmployeeTaskDetail>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+    int count = 0;
+}
+
+<h1>GÖREV DETAYLARI</h1>
+@foreach (var item in Model)
+{
+
+    @item.Description
+    <br>
+}
+@*görev detaylarında bir şey yoksa adım tanımlanmadı desin
+
+  güçlü arayüz
+*@

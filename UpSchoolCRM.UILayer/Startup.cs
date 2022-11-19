@@ -1,7 +1,9 @@
 using CRMUpSchool.DataAccess.EntityFramework;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -43,9 +45,28 @@ namespace UpSchoolCRM.UILayer
             services.AddScoped<IEmployeeTaskService, EmployeeTaskManager>();
             services.AddScoped<IEmployeeTaskDal, EfEmployeeTaskDal>();
 
+            services.AddScoped<IEmployeeTaskDetailService, EmployeeTaskDetailManager>();
+            services.AddScoped<IEmployeeTaskDetailDal, EfEmployeeTaskDetailDal>();
+
+            services.AddScoped<IMessageService, MessageManager>();
+            services.AddScoped<IMessageDal, EfMessageDal>();
+
             services.AddDbContext<Context>();
             services.AddIdentity<AppUser, AppRole>().AddErrorDescriber<CustomeIdentityValidator>().AddEntityFrameworkStores<Context>();
             services.AddControllersWithViews();
+
+            //services.AddMvc(config =>
+            //{
+            //    var policy = new AuthorizationPolicyBuilder().
+            //                 RequireAuthenticatedUser().
+            //                 Build();
+            //    config.Filters.Add(new AuthorizeFilter(policy));//kullanýcý giriþ yapmasýný saðladýk.
+            //                                                    //Aksi ahlde hiçbir sayfaya eriþemez
+            //});
+            //services.ConfigureApplicationCookie(options =>
+            //{
+            //    options.LoginPath = "/Login/Index"; //Giriþ ekranýna yönlendirir.
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

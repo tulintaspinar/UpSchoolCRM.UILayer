@@ -23,6 +23,11 @@ namespace UpSchoolCRM.BusinessLayer.Concrete
            return _employeeTaskDal.GetEmployeeTaskByEmployee();
         }
 
+        public List<EmployeeTask> TGetEmployeeTaskById(int id)
+        {
+            return _employeeTaskDal.GetEmployeeTaskById(id);
+        }
+
         public void TDelete(EmployeeTask t)
         {
             _employeeTaskDal.Delete(t);

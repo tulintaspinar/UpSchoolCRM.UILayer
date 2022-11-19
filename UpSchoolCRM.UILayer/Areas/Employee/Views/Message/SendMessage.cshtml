@@ -1,0 +1,18 @@
+﻿@model Message
+@{
+    ViewData["Title"] = "SendMessage";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+}
+<form class="form-control" method="post">
+    <br />
+    <label>Alıcı mail</label>
+    <input type="text" asp-for="ReceiverEmail" class="form-control"/>
+    <br />
+    <label>Mesaj Konusu</label>
+    <input type="text" asp-for="MessageSubject" class="form-control" />
+    <br />
+    <label>İçerik</label>
+    <textarea rows="3" cols="2" asp-for="MessageContent" class="form-control"> </textarea>
+    <br />
+    <button type="submit" class="btn btn-primary">GÖNDER</button>
+</form>

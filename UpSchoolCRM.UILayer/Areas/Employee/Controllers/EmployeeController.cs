@@ -17,7 +17,7 @@ namespace UpSchoolCRM.UILayer.Areas.Employee.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var values = await _userManager.FindByIdAsync(User.Identity.Name);
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
             if (values != null)
             {
                 ViewBag.v1 = values.Name;

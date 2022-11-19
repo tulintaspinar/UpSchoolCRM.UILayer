@@ -10,5 +10,6 @@ namespace UpSchoolCRM.BusinessLayer.Abstract
     public interface IEmployeeTaskService : IGenericService<EmployeeTask>
     {
         List<EmployeeTask> GetEmployeeTaskByEmployee();
+        List<EmployeeTask> TGetEmployeeTaskById(int id);
     }
 }

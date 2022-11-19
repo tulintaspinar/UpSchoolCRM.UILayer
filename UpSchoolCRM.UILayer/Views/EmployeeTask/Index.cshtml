@@ -23,13 +23,13 @@
         count++;
         <tr>
             <td>@count</td>
-            <td>@item.AppUser.Name + @item.AppUser.Surname</td>
+            <td>@item.AppUser.Name   @item.AppUser.Surname</td>
             <td>@item.Title</td>
             <td>@item.Status</td>
             <td>@item.Date.ToString("dd.MMM.yyy")</td>
-            <td><a href="/EmployeeTask/"class="btn btn-danger">SİL</a></td>
-            <td><a href="/EmployeeTask/" class="btn btn-success">GÜNCELLE</a></td>
-            <td><a href="/EmployeeTask/" class="btn btn-dark">DETAYLAR</a></td>
+            <td><a href="/EmployeeTask/DeleteEmployeeTask/@item.EmployeeTaskID"class="btn btn-outline-danger">SİL</a></td>
+            <td><a href="/EmployeeTask/" class="btn btn-outline-success">GÜNCELLE</a></td>
+            <td><a href="/Employee/EmployeeTasksDetail/Index" class="btn btn-outline-dark">DETAYLAR</a></td>
         </tr>
     }
 </table>

@@ -1,0 +1,33 @@
+﻿@model List<EmployeeTask>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
+    int count = 0;
+}
+
+<h1>GÖREVLERİNİZ</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>PERSONEL</th>
+        <th>BAŞLIK</th>
+        <th>DURUM</th>
+        <th>TARİH</th>
+        <th>DETAYLAR</th>
+        <th>YENİ İŞLEM</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@item.AppUser.Name + @item.AppUser.Surname</td>
+            <td>@item.Title</td>
+            <td>@item.Status</td>
+            <td>@item.Date.ToString("dd.MMM.yyy")</td>
+            <td><a href="/Employee/EmployeeTaskDetail/Index/@item.EmployeeTaskID" class="btn btn-dark">DETAYLAR</a></td>
+            <td><a href="/Employee/EmployeeTask/" class="btn btn-dark">YENİ İŞLEM</a></td>
+        </tr>
+    }
+</table>
