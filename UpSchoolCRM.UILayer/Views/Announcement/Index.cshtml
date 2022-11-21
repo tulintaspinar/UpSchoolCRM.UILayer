@@ -1,0 +1,30 @@
+﻿@model List<Announcement>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_CrmLayout.cshtml";
+    int sayac = 0;
+}
+<h1>BİLDİRİMLER</h1>
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>BAŞLIK</th>
+        <th>tARİH</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Duyuruyu Aç</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        sayac++;
+        <tr>
+            <th>@sayac</th>
+            <th>@item.Title</th>
+            <th>@item.Date.ToShortDateString()</th>
+            <th><a href="#" class="btn btn-danger">Sil</a></th>
+            <th><a href="#" class="btn btn-success">Güncelle</a></th>
+            <th><a href="#" class="btn btn-dark">Duyuruyu Aç</a></th>
+        </tr>
+    }
+</table>
+<a href="#" class="btn btn-primary">YENİ BİLDİRİM OLUŞTUR</a>
