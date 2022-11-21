@@ -6,12 +6,18 @@
 }
 
 <h1>GÖREV DETAYLARI</h1>
-@foreach (var item in Model)
-{
-
-    @item.Description
-    <br>
+@if(@ViewBag.Null!=null){
+    <p>@ViewBag.Null</p>
 }
+else{
+    @foreach (var item in Model)
+    {
+        @item.Description
+        <br>
+    }
+}
+
+
 @*görev detaylarında bir şey yoksa adım tanımlanmadı desin
 
   güçlü arayüz

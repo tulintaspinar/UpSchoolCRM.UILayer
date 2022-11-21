@@ -16,6 +16,8 @@ namespace UpSchoolCRM.UILayer.Areas.Employee.Controllers
         public IActionResult Index(int id)
         {
             var values = _employeeTaskDetailService.TGetEmployeeTaskDetailsById(id);
+            if (values == null)
+                ViewBag.Null = "Görev ataması gerçekleşmemiş.";
             return View(values);
         }
     }

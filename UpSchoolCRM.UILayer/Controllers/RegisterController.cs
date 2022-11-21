@@ -26,7 +26,7 @@ namespace UpSchoolCRM.UILayer.Controllers
             var result = await _userManager.CreateAsync(appUser,appUser.PasswordHash);
             if (result.Succeeded)
             {
-                return RedirectToAction("Index","User");
+                return RedirectToAction("Index","Login");
             }
             return View();
         }
