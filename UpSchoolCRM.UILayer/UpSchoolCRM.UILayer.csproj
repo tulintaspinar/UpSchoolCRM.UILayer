@@ -37,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.97.0" />
     <PackageReference Include="EPPlus.Core" Version="1.5.4" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
     <PackageReference Include="iTextSharp.LGPLv2.Core" Version="1.9.3" />
@@ -64,7 +65,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Employee\Data\" />
+    <Folder Include="wwwroot\PdfReport\" />
     <Folder Include="wwwroot\UserImages\" />
   </ItemGroup>
 

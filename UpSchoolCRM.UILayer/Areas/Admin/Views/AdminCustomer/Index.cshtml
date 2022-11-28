@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_CrmLayout.cshtml";
+}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<h1>Müşteri Ajax İşlemleri</h1>
+<br />
+<button type="button" id="btncustomerlist" class="btn btn-outline-dark">Müşteri Listesi</button>
+<button type="button" id="btncustomeradd" class="btn btn-outline-primary">Müşteri Ekle</button>
+<button type="button" id="btncustomerget" class="btn btn-outline-success">Müşteri Getir</button>
+<button type="button" id="btncustomerdelete" class="btn btn-outline-danger">Müşteri Sil</button>
+<button type="button" id="btncustomerupdate" class="btn btn-outline-warning">Müşteri Güncelle</button>
+<br />
+<br />
+
+<div id="customerlist">
+</div>
+<br />
+<div class="form-group">
+    <input type="text" id="txtCustomerName" placeholder="Müşteri adını giriniz..."  class="form-control" />
+    <input type="text" id="txtCustomerSurname" placeholder="Müşteri soyadını giriniz..."  class="form-control" />
+    <input type="text" id="txtCustomerMail" placeholder="Müşteri mail adresini giriniz..."  class="form-control" />
+    <input type="text" id="txtCustomerPhone" placeholder="Müşteri telefon numarasını giriniz..." class="form-control" />
+</div>
+<br />
+
+<div class="form-group">
+    <input type="text" placeholder="Aranacak ID değerini giriniz..." id="txtid" class="form-control" />
+</div>
+
+<br />
+<div id="customerGetById">
+
+</div>
+
+
+
+<script> 
+    //GetList
+    $("#btncustomerlist").click(function () {
+        $.ajax({
+            contentType: "application/json",
+            dataType: "json",
+            type: "get",
+            url: "/Admin/AdminCustomer/CustomerList/",
+            success: function (funk1) {
+                let values = jQuery.parseJSON(funk1);
+                console.log(values);
+
+                let tablehtml = "<table class=table table-bordered>"+
+                    "<tr> <th>Müşteri ID</th><th>Müşteri Adı</th><th>Müşteri Soyadı</th> <th>Müşteri Mail</th></tr> ";
+                    $.each(values,(index,item)=>{
+                        tablehtml+=`<tr>
+                                        <td>${item.CustomerID}</td>
+                                        <td>${item.CustomerName}</td>
+                                        <td>${item.CustomerSurname}</td>
+                                        <td>${item.CustomerMail}</td>
+                                    </tr>`
+                    }); //Birinci parantez gönderilecek değer 
+                tablehtml+="</table>";
+                $("#customerlist").html(tablehtml);
+            }
+        });
+    });
+
+    $("#btncustomeradd").click(function () {
+        let customervalues = {
+            CustomerName: $("#txtCustomerName").val(),
+            CustomerSurname: $("#txtCustomerSurname").val(),
+            CustomerMail: $("#txtCustomerMail").val(),
+            CustomerPhone: $("#txtCustomerPhone").val()
+        };
+
+        $.ajax({
+            type: "post",
+            url: "/Admin/AdminCustomer/AddCustomer",
+            data: customervalues,
+            success: function (funk2) {
+                let result = jQuery.parseJSON(funk2);
+                swal("Başarılı!", "Müşteri başarılı bir şekilde eklendi", "success");
+            }
+        });
+    });
+
+    $("#btncustomerget").click(x=>{
+        let id = $("#txtid").val();
+
+        $.ajax({
+            contentType:"application/json",
+            dataType:"json",
+            type:"get",
+            url: "/Admin/AdminCustomer/GetById",
+            data:{CustomerID:id},
+            success: function(funk3){
+                let result = jQuery.parseJSON(funk3);
+                console.log(result);
+
+                let tablehtml2 = `<table class=table table-bordered>
+                                    <tr>
+                                        <th>Müşteri ID</th><th>Müşteri Adı</th> 
+                                        <th>Müşteri Soyadı</th>
+                                    </tr> 
+                                    <tr>
+                                        <td>${result.CustomerID}</td>
+                                        <td>${result.CustomerName}</td>
+                                        <td>${result.CustomerSurname}</td>
+                                    </tr>
+                                    </table>`;
+                $("#customerGetById").html(tablehtml2);
+            }
+        });
+    })
+</script>

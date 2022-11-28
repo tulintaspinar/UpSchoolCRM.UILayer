@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using UpSchoolCRM.EntityLayer.Concrete;
+using UpSchoolCRM.UILayer.Models;
 
 namespace UpSchoolCRM.UILayer.Controllers
 {
@@ -22,9 +23,9 @@ namespace UpSchoolCRM.UILayer.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Index(AppUser appUser)
+        public async Task<IActionResult> Index(UserSignInModel appUser)
         {
-            var result = await _signInManager.PasswordSignInAsync(appUser.UserName, appUser.PasswordHash,false,true);
+            var result = await _signInManager.PasswordSignInAsync(appUser.UserName, appUser.Password,true,true);
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", "User");
