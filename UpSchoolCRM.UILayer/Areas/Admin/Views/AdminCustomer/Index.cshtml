@@ -14,12 +14,14 @@
 <button type="button" id="btncustomerget" class="btn btn-outline-success">Müşteri Getir</button>
 <button type="button" id="btncustomerdelete" class="btn btn-outline-danger">Müşteri Sil</button>
 <button type="button" id="btncustomerupdate" class="btn btn-outline-warning">Müşteri Güncelle</button>
+
 <br />
 <br />
 
 <div id="customerlist">
 </div>
 <br />
+@*ekleme*@
 <div class="form-group">
     <input type="text" id="txtCustomerName" placeholder="Müşteri adını giriniz..."  class="form-control" />
     <input type="text" id="txtCustomerSurname" placeholder="Müşteri soyadını giriniz..."  class="form-control" />
@@ -27,17 +29,28 @@
     <input type="text" id="txtCustomerPhone" placeholder="Müşteri telefon numarasını giriniz..." class="form-control" />
 </div>
 <br />
-
+@*GetById*@
 <div class="form-group">
     <input type="text" placeholder="Aranacak ID değerini giriniz..." id="txtid" class="form-control" />
 </div>
 
 <br />
-<div id="customerGetById">
-
+<div id="customerGetById"></div>
+<br />
+@*Delete*@
+<div class="form-group">
+    <input type="text" class="form-control" id="txtDeleteId"  placeholder="Siliniecek kişinin idsini yazınız."/>
 </div>
 
-
+<br />
+@*Update*@
+<div class="form-group">
+    <input type="text" class="form-control" id="txtId" placeholder="ID" />
+    <input type="text" class="form-control" id="txtName" placeholder="Adınız" />
+    <input type="text" class="form-control" id="txtSurname" placeholder="Soyadınız" />
+    <input type="text" class="form-control" id="txtMail" placeholder="Mail" />
+    <input type="text" class="form-control" id="txtPhone" placeholder="Telefonunuz" />
+</div>
 
 <script> 
     //GetList
@@ -66,7 +79,7 @@
             }
         });
     });
-
+    //Insert
     $("#btncustomeradd").click(function () {
         let customervalues = {
             CustomerName: $("#txtCustomerName").val(),
@@ -85,7 +98,7 @@
             }
         });
     });
-
+    //GetById
     $("#btncustomerget").click(x=>{
         let id = $("#txtid").val();
 
@@ -114,4 +127,36 @@
             }
         });
     })
+    //Delete
+    $("#btncustomerdelete").click(x=>{
+        let id = $("#txtDeleteId").val();
+        $.ajax({
+            url: "/Admin/AdminCustomer/DeleteCustomer/"+id,
+            type: "get",
+            contentType: "application/json",
+            dataType: "json",
+            success: function(funk4){
+                swal("Başarılı","Müşteri silindi.","success");
+            }
+        });
+    });
+
+    //Update
+    $("#btncustomerupdate").click(function(){
+        let values = {
+            CustomerID:$("#txtId").val(),
+            CustomerName: $("#txtName").val(),
+            CustomerSurname: $("#txtSurname").val(),
+            CustomerMail: $("#txtMail").val(),
+            CustomerPhone: $("#txtPhone").val()
+        };
+        $.ajax({
+            type:"get",
+            url: "/Admin/AdminCustomer/UpdateCustomer",
+            data:values,
+            success:function(funk5){
+                swal("Güncelleme İşlemi","Güncelleme işlemi başarıyla gerçekleşti.","success");
+            }
+        });
+    });
 </script>

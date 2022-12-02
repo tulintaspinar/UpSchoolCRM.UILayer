@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_CrmLayout.cshtml";
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<button type="button" id="btn" class="btn btn-outline-info">SweedButton</button>
+<script>
+    $("#btn").click(function () {
+        swal("hello");
+    });
+</script>
+
