@@ -61,6 +61,7 @@
   <ItemGroup>
     <ProjectReference Include="..\UpSchoolCRM.BusinessLayer\UpSchoolCRM.BusinessLayer.csproj" />
     <ProjectReference Include="..\UpSchoolCRM.DataAccess\UpSchoolCRM.DataAccess.csproj" />
+    <ProjectReference Include="..\UpSchoolCRM.DTOLayer\UpSchoolCRM.DTOLayer.csproj" />
     <ProjectReference Include="..\UpSchoolCRM.EntityLayer\UpSchoolCRM.EntityLayer.csproj" />
   </ItemGroup>
 

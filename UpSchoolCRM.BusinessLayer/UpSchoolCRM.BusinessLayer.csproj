@@ -22,11 +22,11 @@
     <Folder Include="Logging\" />
     <Folder Include="ValidationRules\AppUserValidation\" />
     <Folder Include="ValidationRules\CustomerValidation\" />
-    <Folder Include="ValidationRules\SupplierValidation\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\UpSchoolCRM.DataAccess\UpSchoolCRM.DataAccess.csproj" />
+    <ProjectReference Include="..\UpSchoolCRM.DTOLayer\UpSchoolCRM.DTOLayer.csproj" />
     <ProjectReference Include="..\UpSchoolCRM.EntityLayer\UpSchoolCRM.EntityLayer.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,4 @@
-﻿@model AppUser
+﻿@model UserSignUpModel
 @{
     Layout = null;
 }
@@ -34,24 +34,34 @@
                                 <img src="~/MajesticAdmin-Free-Bootstrap-Admin-Template-master/template/images/logo.svg" alt="logo">
                             </div>
                             <h6 class="font-weight-light">Birkaç adımda üyeliğini tamamla.</h6>
-                            <form  method="post" class="pt-3">
+                            <form method="post" class="pt-3">
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg" placeholder="Kullanıcı Adı" asp-for="UserName">
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg" placeholder="Adınız" asp-for="Name">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg" placeholder="Soyadınız" asp-for="Surname">
+                                    <span asp-validation-for="Surname" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg" placeholder="Email" asp-for="Email">
+                                    <input type="email" class="form-control form-control-lg" placeholder="Email" asp-for="Mail">
+                                    <span asp-validation-for="Mail" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg" placeholder="Telefon Numarası" asp-for="PhoneNumber">
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg" placeholder="Şifre" asp-for="PasswordHash">
+                                    <input type="password" class="form-control form-control-lg" placeholder="Şifre" asp-for="Password">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-lg" placeholder="Şifreniz tekrar" asp-for="ConfirmPassword">
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                                 </div>
                                 <div class="mb-4">
                                     <div class="form-check">
@@ -62,12 +72,16 @@
                                     </div>
                                 </div>
                                 <div class="mt-3">
-                                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" >KAYIT OL</button>
+                                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">KAYIT OL</button>
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">
                                     Zaten hesabınız var mı? <a href="/Login/Index" class="text-primary">Giriş Yap</a>
                                 </div>
+                                <div asp-validation-summary="ModelOnly" class="text-danger">
+
+                                </div>
                             </form>
+
                         </div>
                     </div>
                 </div>

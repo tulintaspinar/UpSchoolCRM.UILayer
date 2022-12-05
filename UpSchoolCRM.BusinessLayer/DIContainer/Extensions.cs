@@ -1,4 +1,5 @@
 ﻿using CRMUpSchool.DataAccess.EntityFramework;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -7,8 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UpSchoolCRM.BusinessLayer.Abstract;
 using UpSchoolCRM.BusinessLayer.Concrete;
+using UpSchoolCRM.BusinessLayer.ValidationRules.ContactValidation;
 using UpSchoolCRM.DataAccess.Abstract;
 using UpSchoolCRM.DataAccess.EntityFramework;
+using UpSchoolCRM.DTOLayer.DTOs.ContactDTOs;
 
 namespace UpSchoolCRM.BusinessLayer.DIContainer
 {
@@ -36,6 +39,15 @@ namespace UpSchoolCRM.BusinessLayer.DIContainer
 
             services.AddScoped<IAnnouncementService, AnnouncementManager>();
             services.AddScoped<IAnnouncementDal, EfAnnouncementDal>();
+
+            services.AddScoped<IContactDal, EfContactDal>();
+            services.AddScoped<IContactService, ContactManager>();
+        }
+
+        public static void CustomizeValidator(this IServiceCollection services)
+        {
+            services.AddTransient<IValidator<ContactAddDTO>, ContactAddValidator>(); //bağımlılıkları minimize eden metot
+            services.AddTransient<IValidator<ContactUpdateDTO>, ContactUpdateValidator>();
         }
     }
 }

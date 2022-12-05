@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "UserList";
+    Layout = "~/Views/Shared/_CrmLayout.cshtml";
+}
+
+<h1>KULLANICI LİSTESİ</h1>
+
+<table class="table table-striped">
+
+    <tr>
+        <th>KULLANICI ADI</th>
+        <th>ROL ATA</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.UserName</td>
+            <td><a href="/Role/AssignRole/" class="btn btn-dark">ROL ATA</a></td>
+        </tr>
+    }
+</table>
+
+@*Yeni sayfa açılacak en üstte ad roller yer alacak kullanıcı tikli olacak *@

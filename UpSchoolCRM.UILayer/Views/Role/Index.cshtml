@@ -10,6 +10,7 @@
         <th>#</th>
         <th>Rol Adı</th>
         <th>Rol Sil</th>
+        <th>Rol Güncelle</th>
     </tr>
     @foreach (var item in Model)
     {
@@ -17,6 +18,7 @@
             <td>@item.Id</td>
             <td>@item.Name</td>
             <td><a href="/Role/DeleteRole/@item.Id" class="btn btn-danger">SİL</a></td>
+            <td><a href="/Role/UpdateRole/@item.Id" class="btn btn-danger">GÜNCELLE</a></td>
         </tr>
     }
 </table>
